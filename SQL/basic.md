@@ -1,6 +1,6 @@
 # SQL 기본 문법 정리
 
-## 데이터베이스 및 테이블 관리
+## 1. 데이터베이스 및 테이블 관리
 ### 데이터베이스 생성, 삭제
 ``` sql
 CREATE DATABASE DB명; -- 생성
@@ -29,7 +29,7 @@ CREATE TABLE motorcycles (
 );
 ```
 
-## 데이터 조작 (DML :  Data Manipulation Language)
+## 2. 데이터 조작 (DML :  Data Manipulation Language)
 ### 데이터 삽입 (INSERT)
 ``` sql
 INSERT INTO 테이블명 (컬럼1, 컬럼2, ...) VALUES (값1, 값2, ...);
@@ -100,4 +100,25 @@ DELETE FROM 테이블명 WHERE 조건;
 -> 예제
 ``` sql 
 DELETE FROM motorcycls WHERE brand = 'honda';
+```
+
+## 3. 조인 (JOIN)
+### 내부 조인 (INNER JOIN)
+``` sql
+SELECT A.컬럼명, B.컬럼명
+FROM 테이블A AS A -- 테이블A의 이름을 A로 칭한다
+INNER JOIN 테이블B AS B ON A.공통컬럼 = B.공통컬럼;
+```
+-> 예제
+``` sql
+SELECT motorcycles.name, orders.amount
+FROM motorcycles
+INNER JOIN orders ON motorcycles.name = orders.moto_name;
+```
+
+### 외부 조인 (LEFT JOIN, RIGHT JOIN)
+``` sql
+SELECT A.컬럼명, B.컬럼명
+FROM 테이블A AS A
+LEFT JOIN 테이블B AS B ON A.공통컬럼 = B.공통컬럼;
 ```
